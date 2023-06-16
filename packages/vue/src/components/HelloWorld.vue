@@ -1,19 +1,25 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import emitter from '@/common/emitter'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import emitter, { EventCallback } from '@/common/emitter'
 const message = ref('')
 
+const handleEmit = ({ code, msg }: EventCallback) => {
+  if (code === 0) {
+    message.value = msg
+  }
+}
+
 onMounted(() => {
-  emitter.on('mouse', ({ code, msg }) => {
-    if (code === 0) {
-      message.value = msg
-    }
-  })
+  emitter.on('mouse', handleEmit)
+})
+
+onBeforeUnmount(() => {
+  emitter.off('mouse', handleEmit)
 })
 </script>
 
 <template>
-  <div>received from APP: {{ message }}</div>
+  <div class="read-the-docs">received from APP: {{ message }}</div>
 </template>
 
 <style scoped>
