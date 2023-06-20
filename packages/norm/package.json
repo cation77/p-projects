@@ -1,0 +1,31 @@
+{
+  "name": "@pnpm-monorepo/norm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "types": "main.ts",
+  "scripts": {
+    "dev": "nodemon ./main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "norm": "./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cac": "^6.7.14",
+    "chalk": "^4.0.1",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
+    "@types/fs-extra": "^11.0.1",
+    "@types/node": "^20.3.1",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}
