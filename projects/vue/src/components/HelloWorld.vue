@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import emitter, { EventCallback } from '@/common/emitter'
 const message = ref('')
+const loading = ref(true)
 
 const handleEmit = ({ code, msg }: EventCallback) => {
   if (code === 0) {
@@ -10,6 +11,7 @@ const handleEmit = ({ code, msg }: EventCallback) => {
 }
 
 onMounted(() => {
+  setTimeout(() => (loading.value = false), 1500)
   emitter.on('mouse', handleEmit)
 })
 
@@ -19,7 +21,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="read-the-docs">received from APP: {{ message }}</div>
+  <div class="read-the-docs" v-loading="loading">
+    <p>received from APP: {{ message }}</p>
+    <input type="text" v-focus="true" />
+  </div>
 </template>
 
 <style scoped>
