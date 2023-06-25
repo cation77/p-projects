@@ -19,7 +19,7 @@ const copy = {
       document.body.removeChild(textarea)
     })
   },
-  update(el: IElement, binding: DirectiveBinding) {
+  updated(el: IElement, binding: DirectiveBinding) {
     el.targetValue = binding.value
   },
   unmounted(el: IElement) {

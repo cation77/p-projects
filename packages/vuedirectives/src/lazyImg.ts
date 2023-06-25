@@ -18,7 +18,7 @@ const lazyImg = {
     el.$io = io
     io.observe(el)
   },
-  update(el: IElement, binding: DirectiveBinding) {
+  updated(el: IElement, binding: DirectiveBinding) {
     el.$data_src = binding.value
   },
   unmounted(el: IElement) {

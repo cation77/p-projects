@@ -4,7 +4,7 @@ const focus = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     binding.value && el.focus()
   },
-  update(el: HTMLElement, binding: DirectiveBinding) {
+  updated(el: HTMLElement, binding: DirectiveBinding) {
     binding.value && el.focus()
   }
 }

@@ -54,7 +54,7 @@ const loading = {
     el.$instance.innerHTML = 'loading...'
     binding.value = toggleLoading(el, binding)
   },
-  update(el: IElement, binding: DirectiveBinding) {
+  updated(el: IElement, binding: DirectiveBinding) {
     binding.oldValue !== binding.value && toggleLoading(el, binding)
   },
   unmounted(el: IElement, binding: DirectiveBinding) {
