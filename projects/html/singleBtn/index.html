@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Div BTN Toggle Effect</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+
+  <body>
+    <div class="btn"></div>
+    <div class="cloud"></div>
+  </body>
+
+  <script>
+    /**
+     * 单标签下的日间/黑夜模式切换按钮效果
+     * https://juejin.cn/post/7246917539766304829
+     */
+    const btn = document.querySelector('.btn')
+    let isSun = true
+    btn.addEventListener('click', () => {
+      if (isSun) {
+        btn.classList.add('night')
+        isSun = false
+      } else {
+        btn.classList.remove('night')
+        isSun = true
+      }
+    })
+  </script>
+</html>
