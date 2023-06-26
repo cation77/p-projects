@@ -7,7 +7,7 @@ interface IElement extends HTMLElement {
 
 function toggleLoading(el: IElement, binding: DirectiveBinding) {
   if (binding.value && el.$instance) {
-    insertDom(el, binding)
+    insertDom(el)
   } else {
     el.$instance?.parentNode &&
       el.$instance.parentNode.removeChild(el.$instance)
@@ -18,7 +18,7 @@ function getStyle(el: HTMLElement, attr: keyof CSSStyleDeclaration) {
   return window.getComputedStyle(el, null)[attr]
 }
 
-function insertDom(el: IElement, binding: DirectiveBinding) {
+function insertDom(el: IElement) {
   const styles: Partial<CSSStyleDeclaration> = {
     position: 'absolute',
     top: '0',

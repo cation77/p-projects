@@ -25,7 +25,7 @@ const longPress = {
     el.addEventListener('click', cancel)
     el.addEventListener('mouseout', cancel)
   },
-  unmounted(el: HTMLElement, binding: DirectiveBinding) {
+  unmounted(el: HTMLElement) {
     el.removeEventListener('mousedown', () => null)
     el.removeEventListener('mouseout', () => null)
     el.removeEventListener('click', () => null)
