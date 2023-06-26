@@ -1,0 +1,21 @@
+{
+  "keepSettings": {
+    "type": 2,
+    "amount": 10
+  },
+  "auditFilename": "audit.json",
+  "hashType": "md5",
+  "extension": "",
+  "files": [
+    {
+      "date": 1687765405942,
+      "name": "F:\\learning\\pnpms\\projects\\express\\logs\\20230626-access.log",
+      "hash": "39f2dd021881f4de5e4426e03ac69da1"
+    },
+    {
+      "date": 1687766067380,
+      "name": "F:\\learning\\pnpms\\projects\\express\\logs\\access-20230626.log.20230626",
+      "hash": "00237c7786d467f815d8f20f7092b2a1"
+    }
+  ]
+}
