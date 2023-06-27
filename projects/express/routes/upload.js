@@ -2,7 +2,7 @@ const express = require('express')
 const multiparty = require('multiparty')
 const fs = require('fs')
 const path = require('path')
-// const { Buffer } = require('buffer')
+const { Buffer } = require('buffer')
 
 const router = express.Router()
 const staticPath = path.join(process.cwd(), '/public/files')
