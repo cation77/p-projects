@@ -1,7 +1,9 @@
 <template>
   <div>
     <input ref="inputEl" type="file" />
-    <button @click="handleUpload">上传</button>
+    <button @click="handleUpload" v-loading="loading">上传</button>
+    <button @click="mergeFile">合并</button>
+    <a :href="download" download="HQC_Plant.ywt">测试静态文件下载</a>
   </div>
 </template>
 
@@ -11,6 +13,9 @@ import pLimit from '@pnpm-monorepo/p-limit'
 import useUpload from './upload'
 import type { ResponseResult } from './types'
 
+const download = `http://localhost:8080/static/files/HQC_Plant.ywt`
+const filename = ref('')
+const loading = ref(false)
 const [result, upload] = useUpload()
 const inputEl = ref<HTMLInputElement | undefined>()
 
@@ -25,29 +30,32 @@ watch(
 
 const uploadFile = (data: FormData): Promise<ResponseResult> => {
   // 请求上传 url
-  // const url = 'http://localhost:3333/upload'
-  // return fetch(url, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'multipart/form-data'
-  //   },
-  //   body: data
-  // }).then((response) => response.json())
-  console.log('uploadFile', data.get('name'))
-  return new Promise((resolve, reject) => {
-    if (Math.random() > 0.5) {
-      // 模拟错误
-      reject({
-        code: 0,
-        msg: `Service Error: ${data.get('name')}`,
-        result: data.get('name')
-      })
-    } else {
-      setTimeout(() => {
-        resolve({ code: 200, msg: '', result: data })
-      }, 500)
-    }
-  })
+  const url = 'http://localhost:8080/api/upload'
+  // const obj = { name: 'tom' }
+  return fetch(url, {
+    method: 'POST',
+    body: data
+    // headers: {
+    // 'Content-Type': 'applcation/json'
+    // 'Content-Type': 'application/x-www-form-urlencoded'
+    // 'Content-Type': 'multipart/form-data'
+    // },
+  }).then((response) => response.json())
+  // console.log('uploadFile', data.get('name'))
+  // return new Promise((resolve, reject) => {
+  //   if (Math.random() > 0.5) {
+  //     // 模拟错误
+  //     reject({
+  //       code: 0,
+  //       msg: `Service Error: ${data.get('name')}`,
+  //       result: data.get('name')
+  //     })
+  //   } else {
+  //     setTimeout(() => {
+  //       resolve({ code: 200, msg: '', result: data })
+  //     }, 500)
+  //   }
+  // })
 }
 
 const concurrentUpload = async (hash: string, fileChunks: Blob[]) => {
@@ -71,7 +79,15 @@ const concurrentUpload = async (hash: string, fileChunks: Blob[]) => {
 
 const mergeFile = () => {
   // 完成分片上传，合并文件
-  console.log('mergeFile', result.hash)
+  const url = `http://localhost:8080/api/upload/merge?hash=${
+    result.hash
+  }&filename=${filename.value || '文档'}`
+  fetch(url)
+    .then((response) => response.json())
+    .then((res) => {
+      loading.value = false
+      console.log('mergeFile--->', res)
+    })
 }
 
 const execUpload = async () => {
@@ -89,11 +105,14 @@ const verifyFile = async (hash: string) => {
 }
 
 const handleUpload = () => {
-  console.log('确定上传--->', inputEl.value)
-  console.log(inputEl.value?.files)
+  const files = inputEl.value?.files || ([] as File[])
+  filename.value = files[0]?.name || ''
   const file = inputEl.value?.files?.[0]
-  // 文件分片, 每片大小 1K
-  file && upload(file, 1 * 1000)
+  // 文件分片, 每片大小 1M
+  if (file) {
+    loading.value = true
+    upload(file, 1000 * 1000)
+  }
 }
 </script>
 
