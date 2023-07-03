@@ -4,9 +4,11 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const path = require('path')
 const cors = require('cors')
+const { expressjwt } = require('express-jwt')
 const { logger, rotateLogStream } = require('./common/logger')
 const indexRouter = require('./routes/index')
 const uploadRouter = require('./routes/upload')
+const { TOKEN_SECRET_KEY } = require('./common/index')
 
 const app = express()
 app.use(cors())
@@ -16,6 +18,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
+app.use(
+  expressjwt({ secret: TOKEN_SECRET_KEY, algorithms: ['HS256'] }).unless({
+    path: ['/login', /^\/static\/.*/, /^(?!\/api).*/]
+  })
+)
 app.use('/api', indexRouter)
 app.use('/api/upload', uploadRouter)
 
