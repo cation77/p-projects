@@ -1,0 +1,21 @@
+{
+  "name": "@pnpm-monorepo/hooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.7",
+    "@types/react": "^18.0.37",
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "@pnpm-monorepo/shared": "workspace:^1.0.0",
+    "lodash-es": "^4.17.21"
+  }
+}
