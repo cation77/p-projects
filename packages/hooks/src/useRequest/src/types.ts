@@ -77,7 +77,7 @@ export type Plugin<TData, TParams extends any[]> = {
 }
 
 export interface Result<TData, TParams extends any[]> {
-  loading?: boolean
+  loading: boolean
   data?: TData
   error?: Error
   params: TParams | []
