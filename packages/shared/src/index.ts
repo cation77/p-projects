@@ -18,7 +18,7 @@ export const isDate = (val: unknown): val is Date =>
   toTypeString(val) === '[object Date]'
 export const isRegExp = (val: unknown): val is Date =>
   toTypeString(val) === '[object RegExp]'
-export const isFunction = (val: unknown): val is Date =>
+export const isFunction = (val: unknown): val is (...args: any) => any =>
   typeof val === 'function'
 export const isString = (val: unknown): val is string => typeof val === 'string'
 export const isSymbol = (val: unknown): val is symbol => typeof val === 'symbol'
