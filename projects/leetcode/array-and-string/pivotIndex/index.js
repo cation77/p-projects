@@ -11,3 +11,5 @@ function pivotIndex(nums) {
 }
 
 console.log(pivotIndex([1, 2, 3]))
+
+export default pivotIndex
