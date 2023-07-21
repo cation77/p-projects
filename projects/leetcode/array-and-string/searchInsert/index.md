@@ -26,3 +26,7 @@
 1. 数组有序，
 2. O(log n), 首先想到二分法
 3. 需要处理边界，条件是否能触达
+
+## 题目
+
+1. [35. 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)

@@ -20,3 +20,7 @@
 
 1. 先排序，比较每个区间的 `starti` 从小到大排序，方便区间比较
 2. 当 pre 区间的右边界大于等于 next 区间的左边界，则 2 个区间合并
+
+## 题目
+
+1. [56. 合并区间](https://leetcode.cn/problems/merge-intervals/)

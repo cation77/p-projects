@@ -29,4 +29,5 @@
 
 ## 题目
 
-[1991. 找到数组的中间位置](https://leetcode.cn/problems/find-the-middle-index-in-array/)
+1. [724. 寻找数组的中心下标](https://leetcode.cn/problems/find-pivot-index/)
+2. [1991. 找到数组的中间位置](https://leetcode.cn/problems/find-the-middle-index-in-array/)

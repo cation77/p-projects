@@ -42,3 +42,7 @@
 
 1. 遍历二维数组, 记录每行每列是否有元素值为 0, 当值为 0 时, 对应行 `row[i]` 对应列 `column[j]` 为 `true`
 2. 再次遍历, 当 `row[i]` 或 `column[l]` 为 `true` 时, 则当前元素值为 0
+
+## 题目
+
+1. [面试题 01.08. 零矩阵](https://leetcode.cn/problems/zero-matrix-lcci/)
