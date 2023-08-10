@@ -31,3 +31,25 @@ console.log(
     [9, 10, 11, 12]
   ])
 )
+
+function findDiagonalOrder1(arr) {
+  const row = arr.length
+  const column = arr[0].length
+  const count = row + column - 1
+  const result = []
+  let r = (c = 0)
+  for (let i = 0; i < count; i++) {
+    if (i % 2 === 0) {
+      for (let j = r; j >= i - c; j--) {
+        result.push(arr[j][i - j])
+      }
+    } else {
+      for (let j = c; j >= i - r; j--) {
+        result.push(arr[i - j][j])
+      }
+    }
+    r = r >= row - 1 ? row - 1 : r + 1
+    c = c >= column - 1 ? column - 1 : c + 1
+  }
+  return result
+}
