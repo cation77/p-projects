@@ -1,0 +1,39 @@
+.price-alert-scroll-box {
+  height: 34px;
+  width: 260px;
+  overflow: hidden;
+
+  .scroll-container {
+    position: relative;
+    top: -34px;
+  }
+
+  .scroll-row {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    height: 34px;
+    max-height: 34px;
+    overflow: hidden;
+    transition: 0.5s max-height;
+  }
+  .scroll-cell {
+    width: 260px;
+    max-height: 34px;
+    overflow: hidden;
+  }
+
+  .cell-content {
+    cursor: default;
+    line-height: 17px;
+    display: -webkit-box;
+    overflow: hidden;
+    --webkit-line-clamp: 2;
+    --webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+  .mh-0 {
+    max-height: 0;
+  }
+}
