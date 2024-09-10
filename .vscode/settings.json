@@ -3,8 +3,8 @@
   "files.eol": "\n",
   // 保存的时候开启自动修复
   "editor.codeActionsOnSave": {
-    "source.fixAll": false,
-    "source.fixAll.eslint": true
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit"
   },
   // 保存的时候自动格式化
   "editor.formatOnSave": true,
@@ -24,5 +24,8 @@
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
   }
 }
