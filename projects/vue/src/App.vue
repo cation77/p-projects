@@ -1,20 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import emitter from '@/common/emitter'
-import HelloWorld from './components/HelloWorld.vue'
-import Upload from './components/upload/index.vue'
-
-const count = ref(0)
-const onClick = () => {
-  count.value++
-  emitter.emit('mouse', { code: 0, msg: `click count--->${count.value}` })
-}
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn')
 </script>
 
 <template>
-  <div @click="onClick">send mitt msg 点击</div>
-  <HelloWorld />
-  <Upload />
+  <a-config-provider :locale="zhCN"><router-view /></a-config-provider>
 </template>
 
 <style scoped></style>

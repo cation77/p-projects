@@ -1,4 +1,6 @@
 import { defineConfig } from 'vite'
+import Components from 'unplugin-vue-components/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import viteCompression from 'vite-plugin-compression'
@@ -7,6 +9,13 @@ import viteCompression from 'vite-plugin-compression'
 export default defineConfig({
   plugins: [
     vue(),
+    Components({
+      resolvers: [
+        AntDesignVueResolver({
+          importStyle: false // css in js
+        })
+      ]
+    }),
     // 压缩静态资源, 生产环境生成 .gz 文件
     viteCompression({
       verbose: true,
@@ -17,9 +26,14 @@ export default defineConfig({
     })
   ],
   server: {
+    host: true,
     open: true,
-    host: '0.0.0.0',
-    port: 8688
+    port: 8688,
+    proxy: {
+      '/api': {
+        target: '127.0.0.1:3000'
+      }
+    }
   },
   resolve: {
     alias: [
