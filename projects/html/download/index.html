@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://www.unpkg.com/axios@1.3.5/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <img id="img" style="width: 100%; height: 100%" src="" alt="" />
+    <script>
+      async function concurrencyDownload(path, size, chunkSize) {
+        let chunNum = Math.ceil(size / chunkSize)
+
+        const downloadTask = []
+        for (let i = 0; i < chunNum; i++) {
+          const rangeStart = chunkSize * (i - 1)
+          const rangeEnd = chunkSize * i - 1
+          downloadTask.push(
+            axios.get(path, {
+              headers: {
+                Range: `bytes=${rangeStart}-${rangeEnd}`
+              },
+              responseType: 'arraybuffer'
+            })
+          )
+        }
+
+        const arrayBuffers = await Promise.all(
+          downloadTask.map((task) => {
+            return task.then((res) => res.data)
+          })
+        )
+        return mergeArrayBuffer(arrayBuffers)
+      }
+
+      function mergeArrayBuffer(arrayBuffers) {
+        let totalLen = 0
+        for (let arr of arrayBuffers) {
+          totalLen += arr.byteLength
+        }
+        let res = new Uint8Array(totalLen)
+        let offset = 0
+        for (let arr of arrayBuffers) {
+          let unit8Artr = new Uint8Array(arr)
+          res.set(unit8Artr, offset)
+          offset += arr.byteLength
+        }
+        return res.buffer
+      }
+
+      function downloadFile(fileBlob, fileName) {
+        const a = document.createElement('a')
+        document.body.appendChild(a)
+        a.style.display = 'none'
+        a.href = URL.createObjectURL(fileBlob)
+        a.download = fileName
+        a.click()
+        setTimeout(() => {
+          document.body.removeChild(a)
+          URL.revokeObjectURL(a.href)
+        }, 1000)
+      }
+
+      async function init() {
+        const img = document.getElementById('img')
+        const { data: len } = await axios.get(
+          'http://localhost:8080/download/length'
+        )
+        const res = await concurrencyDownload(
+          'http://localhost:8080/download/range',
+          len,
+          3000000
+        )
+        const blob = new Blob([res], { type: 'image/jpeg' })
+        const url = URL.createObjectURL(blob)
+        img.src = url
+        downloadFile(blob, 'nature.jpg')
+      }
+
+      init()
+    </script>
+  </body>
+</html>
