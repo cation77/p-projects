@@ -11,6 +11,11 @@ const routes = [
     component: () => import('../pages/home/index.vue')
   },
   {
+    path: '/chat',
+    name: 'chatPage',
+    component: () => import('../pages/chat/index.vue')
+  },
+  {
     path: '/masonry/list',
     name: 'masonry-list',
     component: () => import('../pages/masonry/index.vue')

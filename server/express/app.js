@@ -9,6 +9,7 @@ const { logger, rotateLogStream } = require('./common/logger')
 const indexRouter = require('./routes/index')
 const uploadRouter = require('./routes/upload')
 const downloadRouter = require('./routes/download')
+const chatRouter = require('./routes/chat')
 const { TOKEN_SECRET_KEY } = require('./common/index')
 
 const app = express()
@@ -21,11 +22,12 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use(
   expressjwt({ secret: TOKEN_SECRET_KEY, algorithms: ['HS256'] }).unless({
-    path: ['/login', 'download', /^\/static\/.*/, /^(?!\/api).*/]
+    path: ['/login', 'download', '/chat', /^\/static\/.*/, /^(?!\/api).*/]
   })
 )
 
 app.use('/download', downloadRouter)
+app.use('/chat', chatRouter)
 
 app.use('/api', indexRouter)
 app.use('/api/upload', uploadRouter)
