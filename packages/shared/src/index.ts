@@ -1,8 +1,8 @@
 import debounce from './debounce'
 import throttle from './throttle'
+import screenshot from './screenshot'
 
-export * from './types'
-export { debounce, throttle }
+export { screenshot, debounce, throttle }
 
 export const objectToString = Object.prototype.toString
 
@@ -29,3 +29,7 @@ export const isPromise = <T = any>(val: unknown): val is Promise<T> => {
 }
 export const isPlainObject = (val: unknown): val is object =>
   toTypeString(val) === '[object Object]'
+
+export const isDOMElement = (dom: unknown) => {
+  return dom instanceof HTMLElement
+}
