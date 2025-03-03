@@ -8,11 +8,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
+    FlvVideo: typeof import('./src/components/video/flvVideo.vue')['default']
+    FsBookCard: typeof import('./src/components/waterfall/FsBookCard.vue')['default']
+    FsBookVirtualWaterfall: typeof import('./src/components/waterfall/FsBookVirtualWaterfall.vue')['default']
+    FsBookVirtualWaterfall2: typeof import('./src/components/waterfall/FsBookVirtualWaterfall2.vue')['default']
+    FsVirtualWaterfall: typeof import('./src/components/waterfall/FsVirtualWaterfall.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Mock: typeof import('./src/components/virtualList/mock.vue')['default']
+    Resizer: typeof import('./src/components/resizer/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Upload: typeof import('./src/components/upload/index.vue')['default']
+    Video: typeof import('./src/components/video/index.vue')['default']
     VirtualList: typeof import('./src/components/virtualList/virtualList.vue')['default']
   }
 }

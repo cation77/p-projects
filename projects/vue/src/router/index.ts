@@ -24,6 +24,21 @@ const routes = [
     path: '/masonry/columns',
     name: 'masonry-columns',
     component: () => import('../pages/masonry/columns.vue')
+  },
+  {
+    path: '/waterfall',
+    name: 'waterfall',
+    component: () => import('../pages/waterfall/index.vue')
+  },
+  {
+    path: '/waterfall1',
+    name: 'waterfall1',
+    component: () => import('../pages/waterfall/two.vue')
+  },
+  {
+    path: '/waterfall2',
+    name: 'waterfall2',
+    component: () => import('../pages/waterfall/three.vue')
   }
 ]
 
